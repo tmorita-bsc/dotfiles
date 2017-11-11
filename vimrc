@@ -63,6 +63,20 @@ nnoremap :gd :Gdiff
 "" git-gutter
 let g:gitgutter_max_signs=500 "default value
 
+"" previm
+augroup PrevimSettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+
+let g:previm_open_cmd = ''
+let g:previm_disable_default_css = 1
+let g:previm_custom_css_path = '~/dotfiles/previm/markdown.css'
+nnoremap [previm] <Nop>
+nmap     <Space>p [previm]
+nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
+nnoremap <silent> [previm]r :call previm#refresh()<CR>
+
 " env parameters
 "let g:python_host_prog = expand('$PYENV_ROOT/shims/python')
 let g:python3_host_prog = expand('$PYENV_ROOT/shims/python3')
@@ -83,20 +97,32 @@ if dein#load_state(s:dein_path)
   call dein#add('tomasr/molokai')
   call dein#add('gosukiwi/vim-atom-dark')
   
-  " my-plugin
+  " UI
   "call dein#add('Shougo/unite.vim')
-  "call dein#add('Shougo/neocomplete.vim')
   call dein#add('Shougo/denite.nvim')
+  call dein#add('scrooloose/nerdtree')
+
+  " Completion
+  "call dein#add('Shougo/neocomplete.vim')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-jedi')
-  call dein#add('scrooloose/nerdtree')
+
+  " Shaping
+  call dein#add('vim-syntastic/syntastic')
   call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
+  " Git
   call dein#add('tpope/vim-fugitive')
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('vim-syntastic/syntastic')
   call dein#add('thinca/vim-quickrun')
+
+  " Gtags
   call dein#add('lighttiger2505/gtags.vim')
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
+  " Previm
+  call dein#add('tyru/open-browser.vim')
+  call dein#add('kannokanno/previm')
 
   " custom command for denite.nvim
 
