@@ -47,11 +47,17 @@ eval "$(pyenv init -)"
 
 # Alias
 alias vim="nvim"
+
 alias gs="git status"
 alias ga="git add"
 alias gp="git add -p"
 alias gc="git commit -v"
 alias gd="git diff --cached"
+
+alias tmls="tmux ls"
+alias tma="tmux a -t"
+alias tmd="tmux d -t"
+alias tmkill="tmux kill-session -t"
 
 # Zstyle
 zstyle ':completion:*' completer _complete _match _approximate
