@@ -1,11 +1,9 @@
-
-
 my app  
 execute bellow command  
-"""
-$ (sudo) chmod +x init_env.sh
-$ ./init_env.sh
-"""
+```
+$ (sudo) chmod +x init_env.sh   
+$ ./init_env.sh   
+```
 
 " shell  
 zsh  
