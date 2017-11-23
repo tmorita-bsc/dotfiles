@@ -103,6 +103,9 @@ if dein#load_state(s:dein_path)
 
   " vimshell
   call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+  
+  " colorscheme
+  call dein#add('gosukiwi/vim-atom-dark')
 
   " toml-env setting
   let g:toml_dir  = expand('~/.cache/dein/toml_dir')

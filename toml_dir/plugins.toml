@@ -2,7 +2,8 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'gosukiwi/vim-atom-dark'
+repo  = 'Shougo/vimproc.vim'
+build = 'make'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
