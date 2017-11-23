@@ -3,6 +3,13 @@
 " mac
 if has('mac')
   let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
+  "" below command ( espacialy <C-h> cant work in windows)
+  "" cuz ^H = <C-h> mapping backspace
+  "" move with insert mode
+  imap     <C-h> <Left>
+  imap     <C-j> <Down>
+  imap     <C-k> <Up>
+  imap     <C-l> <Right>
 endif
 
 " default
@@ -35,12 +42,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 " keymapping
 "" unmap
 nnoremap <Space> <Nop>
-
-"" move with insert mode
-imap     <C-h> <Left>
-imap     <C-j> <Down>
-imap     <C-k> <Up>
-imap     <C-l> <Right>
 
 "" neosnippet
 "imap     <C-m> <Plug>(neosnippet_expand_or_jump)
