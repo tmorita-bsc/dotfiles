@@ -43,21 +43,21 @@ imap     <C-k> <Up>
 imap     <C-l> <Right>
 
 "" neosnippet
-imap     <C-m> <Plug>(neosnippet_expand_or_jump)
-smap     <C-m> <Plug>(neosnippet_expand_or_jump)
-xmap     <C-m> <Plug>(neosnippet_expand_target)
-imap     <C-m> <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+"imap     <C-m> <Plug>(neosnippet_expand_or_jump)
+"smap     <C-m> <Plug>(neosnippet_expand_or_jump)
+"xmap     <C-m> <Plug>(neosnippet_expand_target)
+"imap     <C-m> <Plug>(neosnippet_expand_or_jump)
+""imap <expr><TAB>
+"" \ pumvisible() ? '\<C-n>' :
+"" \ neosnippet#expandable_or_jumpable() ?
+"" \    '\<Plug>(neosnippet_expand_or_jump)' : '\<TAB>'
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ '\<Plug>(neosnippet_expand_or_jump)' : '\<TAB>'
+"
+"" For conceal markers.
+"if has('conceal')
+"  set conceallevel=2 concealcursor=niv
+"endif
 
 "" denite.nvim
 nnoremap [denite] <Nop>
@@ -135,8 +135,8 @@ let g:ale_open_list     = 1
 let g:ale_keep_list_window_open = 0
 
 " env parameters
-let g:python_host_prog = expand('python')
-" let g:python3_host_prog = expand('$PYENV_ROOT/shims/python3')
+"let g:python_host_prog = expand('python')
+let g:python3_host_prog = expand('/usr/local/bin/python3')
 let s:dein_path = expand('~/.cache/dein')
 
 if &compatible

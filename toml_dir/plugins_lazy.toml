@@ -3,6 +3,15 @@
 repo = 'Shougo/denite.nvim'
 on_cmd = ['denite']
 
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_path = '.*'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_path = '.*'
+on_i = 1
+
 # deoplete.nvim
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'

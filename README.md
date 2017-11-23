@@ -21,6 +21,9 @@ prezto
 neovim  
 dein.vim  
 "" 好みで Conque-GDB をいれても良い
+### 残課題
+- deoplete.nvim,neosnippet.vim,neosnippet-snippetをうまく使う
+- denite.nvim
 
 " git  
 git  
