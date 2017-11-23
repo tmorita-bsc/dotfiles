@@ -20,6 +20,7 @@ prezto
 " editor  
 neovim  
 dein.vim  
+"" 好みで Conque-GDB をいれても良い
 
 " git  
 git  

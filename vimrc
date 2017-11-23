@@ -43,9 +43,21 @@ imap     <C-k> <Up>
 imap     <C-l> <Right>
 
 "" neosnippet
-"imap     <C-m> <Plug>(neosnippet_expand_or_jump)
-"smap     <C-m> <Plug>(neosnippet_expand_or_jump)
-"xmap     <C-m> <Plug>(neosnippet_expand_target)
+imap     <C-m> <Plug>(neosnippet_expand_or_jump)
+smap     <C-m> <Plug>(neosnippet_expand_or_jump)
+xmap     <C-m> <Plug>(neosnippet_expand_target)
+imap     <C-m> <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 "" denite.nvim
 nnoremap [denite] <Nop>
@@ -102,8 +114,10 @@ nmap     <Space>a [ale]
 nnoremap <silent> [ale]<C-p> <Plug>{ale_previous}
 nnoremap <silent> [ale]<C-n> <Plug>{ale_next}
 "" message_format
-"let g:airline#extensions#ale#enabled = 1
-let g:ale_echo_msg_format = '[%linter%] %s [%serverity%]'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%] '
 "" display error/warning sign always
 let g:ale_sign_column_always = 1
 "" execute lint with open file
@@ -112,11 +126,13 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 "" execute lint on editing file
 "let g:ale_lint_on_text_changed = 'never'
-"" quickfix
+"" locationlist
 let g:ale_set_loclist   = 0
+"" quickfix
 let g:ale_set_quickfix  = 1
 let g:ale_open_list     = 1
-let g:ale_keep_list_window_open = 1
+"" open if no error/warning
+let g:ale_keep_list_window_open = 0
 
 " env parameters
 let g:python_host_prog = expand('python')
