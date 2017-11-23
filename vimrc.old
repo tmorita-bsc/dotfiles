@@ -38,9 +38,9 @@ imap     <C-k> <Up>
 imap     <C-l> <Right>
 
 "" neosnippet
-"imap     <C-m> <Plug>(neosnippet_expand_or_jump)
-"smap     <C-m> <Plug>(neosnippet_expand_or_jump)
-"xmap     <C-m> <Plug>(neosnippet_expand_target)
+imap     <C-m> <Plug>(neosnippet_expand_or_jump)
+smap     <C-m> <Plug>(neosnippet_expand_or_jump)
+xmap     <C-m> <Plug>(neosnippet_expand_target)
 
 "" denite.nvim
 nnoremap [denite] <Nop>
@@ -101,17 +101,41 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state(s:dein_path)
   call dein#begin(s:dein_path)
 
-  " vimshell
+  " dein.vim
+  call dein#add('Shougo/dein.vim')
+
+  " color
+  call dein#add('tomasr/molokai')
+  call dein#add('gosukiwi/vim-atom-dark')
+  
+  " UI
+  "call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/denite.nvim')
+  call dein#add('scrooloose/nerdtree')
+
+  " Completion
+  "call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('zchee/deoplete-jedi')
+
+  " Shaping
+  call dein#add('vim-syntastic/syntastic')
+  call dein#add('nathanaelkane/vim-indent-guides')
   call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
-  " toml-env setting
-  let g:toml_dir  = expand('~/.cache/dein/toml_dir')
-  let s:toml      = g:toml_dir . '/plugins.toml'
-  let s:lazy_toml = g:toml_dir . '/plugins_lazy.toml'
+  " Git
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('thinca/vim-quickrun')
 
-  " read toml
-  call dein#load_toml(s:toml,      {'lazy':0})
-  call dein#load_toml(s:lazy_toml, {'lazy':1})
+  " Gtags
+  call dein#add('lighttiger2505/gtags.vim')
+
+  " Previm
+  call dein#add('tyru/open-browser.vim')
+  call dein#add('kannokanno/previm')
+
+  " custom command for denite.nvim
 
   call dein#end()
   call dein#save_state()
@@ -129,4 +153,3 @@ syntax enable
 " color
 "colorscheme molokai
 colorscheme atom-dark-256
-
