@@ -8,6 +8,23 @@ on_cmd = ['denite']
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
 
+# gtags
+[[plugins]]
+repo  = 'lighttiger2505/gtags.vim'
+on_ft = ['python']
+
+[[plugins]]
+repo = 'jsfaint/gen_tags.vim'
+hook_add = '''
+  let g:gen_tags#gtags_auto_gen = 1
+'''
+on_source = ['gtags.vim'] 
+
+[[plugins]]
+repo = 'ozelentok/denite-gtags'
+hook_add = '''
+  nmap <silent> [denite]<C-D> :Denite-buffer-name=gtags_completion gtags_completion<CR>
+'''
 
 # nerdtree
 [[plugins]]

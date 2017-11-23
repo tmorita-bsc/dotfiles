@@ -1,5 +1,10 @@
 "" vimrc
 
+" mac
+if has('mac')
+  let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
+endif
+
 " default
 set number
 set wrap
@@ -56,6 +61,8 @@ nnoremap <silent> [nerdtree]n :NERDTreeToggle<CR>
 nnoremap <silent> [nerdtree]f :NERDTreeFind<CR>
 
 "" gtags
+let g:Gtags_Auto_Map = 0
+let g:Gtags_OpenQuickfixWindow = 1
 map <C-j> :GtagsCursor<CR><CR>
 nnoremap <C-h> :Gtags -f %<CR><CR>
 nnoremap <C-n> :cn<CR>
@@ -87,6 +94,29 @@ nnoremap [previm] <Nop>
 nmap     <Space>p [previm]
 nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
 nnoremap <silent> [previm]r :call previm#refresh()<CR>
+
+" ALE
+"" keymapping
+nnoremap [ale] <Nop>
+nmap     <Space>a [ale]
+nnoremap <silent> [ale]<C-p> <Plug>{ale_previous}
+nnoremap <silent> [ale]<C-n> <Plug>{ale_next}
+"" message_format
+"let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_format = '[%linter%] %s [%serverity%]'
+"" display error/warning sign always
+let g:ale_sign_column_always = 1
+"" execute lint with open file
+let g:ale_lint_on_enter = 1
+"" execute lint with save file
+let g:ale_lint_on_save = 1
+"" execute lint on editing file
+"let g:ale_lint_on_text_changed = 'never'
+"" quickfix
+let g:ale_set_loclist   = 0
+let g:ale_set_quickfix  = 1
+let g:ale_open_list     = 1
+let g:ale_keep_list_window_open = 1
 
 " env parameters
 let g:python_host_prog = expand('python')

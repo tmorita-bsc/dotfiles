@@ -39,12 +39,12 @@ bindkey "^S" history-incremental-search-forward
 autoload -Uz compinit && compinit -u
 
 # Env Parameters
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export XDG_CONFIG_HOME="$HOME/.config"
+#export PATH="/usr/local/opt/curl/bin:$PATH"
+#export XDG_CONFIG_HOME="$HOME/.config"
 ## Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
 # Alias
 alias la="ls -a"

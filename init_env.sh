@@ -22,6 +22,7 @@ ln -sf ~/dotfiles/toml_dir/plugins_lazy.toml  ~/.cache/dein/toml_dir/plugins_laz
 # zsh
 ln -sf ~/dotfiles/zprofile ~/.zprofile
 ln -sf ~/dotfiles/zshrc    ~/.zshrc
+ln -sf ~/dotfiles/zshenv   ~/.zshenv
 
 # git
 ln -sf ~/dotfiles/gitignore ~/.gitignore
