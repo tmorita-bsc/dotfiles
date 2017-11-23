@@ -7,7 +7,20 @@ build = 'make'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-hook_add = 'let g:lightline = { "colorscheme":"wombat"}'
+hook_add = '''
+let g:lightline = {
+\  'colorscheme':'wombat',
+\  'active': {
+\    'left': [
+\      ['mode', 'paste'],
+\      ['readonly', 'filename', 'modified', 'ale'],
+\    ]
+\  },
+\  'conponent_function': {
+\    'ale':'ALEGetStatusLine'
+\  }
+\}
+'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
