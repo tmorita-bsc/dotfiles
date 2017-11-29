@@ -14,10 +14,12 @@ endif
 
 " default
 set number
-set wrap
+set nowrap
+set nofoldenable "disable folding
 set showmatch
 set shellslash
 set wildmenu
+set ambiwidth=double
 "set t_Co=256 "not need with iTerm2
 source $VIMRUNTIME/macros/matchit.vim "can jump opposite {
 
@@ -72,6 +74,7 @@ nnoremap [nerdtree] <Nop>
 nmap     <Space>n [nerdtree]
 nnoremap <silent> [nerdtree]n :NERDTreeToggle<CR>
 nnoremap <silent> [nerdtree]f :NERDTreeFind<CR>
+let g:NERDTreeShowHidden = 1
 
 "" gtags
 let g:Gtags_Auto_Map = 0
