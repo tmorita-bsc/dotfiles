@@ -15,6 +15,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# GNU GLOBAL(gtags)
+export GTAGSLABEL=pygments
+
 # Move Command Line
 bindkey "^L" forward-word
 bindkey "^H" backward-word

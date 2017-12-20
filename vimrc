@@ -65,9 +65,14 @@ nnoremap <Space> <Nop>
 "" denite.nvim
 nnoremap [denite] <Nop>
 nmap     <Space>d [denite]
+" open recent use file buffer
 nnoremap <silent> [denite]h :<C-u>Denite file_mru<CR>
+" Denite grep
 nnoremap <silent> [denite]g :<C-u>Denite grep -buffer-name=search-buffer-denite<CR>
+" resume Denite grep
 nnoremap <silent> [denite]r :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
+nnoremap <silent> [denite]n :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
+nnoremap <silent> [denite]p :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
 
 "" nerdtree 
 nnoremap [nerdtree] <Nop>
@@ -79,11 +84,11 @@ let g:NERDTreeShowHidden = 1
 "" gtags
 let g:Gtags_Auto_Map = 0
 let g:Gtags_OpenQuickfixWindow = 1
-map <C-j> :GtagsCursor<CR><CR>
+map <C-j> :GtagsCursor<CR>
 nnoremap <C-h> :Gtags -f %<CR><CR>
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
-nnoremap <C-g> :Gtags
+nnoremap <C-g> :Gtags <C-r><C-w><CR>
 nnoremap <C-k> :Gtags -r <C-r><C-w><CR><CR>
 
 "" git-fugitive
@@ -118,23 +123,23 @@ nmap     <Space>a [ale]
 nnoremap <silent> [ale]<C-p> <Plug>{ale_previous}
 nnoremap <silent> [ale]<C-n> <Plug>{ale_next}
 "" message_format
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%] '
 "" display error/warning sign always
-let g:ale_sign_column_always = 1
+let g:ale_sign_column_always = 0
 "" execute lint with open file
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 "" execute lint with save file
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_save = 0
 "" execute lint on editing file
-"let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 0
 "" locationlist
 let g:ale_set_loclist   = 0
 "" quickfix
-let g:ale_set_quickfix  = 1
-let g:ale_open_list     = 1
+let g:ale_set_quickfix  = 0
+let g:ale_open_list     = 0
 "" open if no error/warning
 let g:ale_keep_list_window_open = 0
 

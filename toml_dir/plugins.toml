@@ -31,11 +31,11 @@ repo = 'Shougo/neosnippet-snippets'
 #[[plugins]]
 #repo = 'vim-syntastic/syntastic'
 
-[[plugins]]
-repo = 'w0rp/ale'
+#[[plugins]]
+#repo = 'w0rp/ale'
 
-[[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
+#[[plugins]]
+#repo = 'nathanaelkane/vim-indent-guides'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -45,3 +45,6 @@ repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'vim-scripts/Conque-GDB'

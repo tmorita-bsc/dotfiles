@@ -18,11 +18,14 @@ mkdir ~/.cache/dein/toml_dir
 ln -sf ~/dotfiles/vimrc     ~/.vimrc
 ln -sf ~/dotfiles/toml_dir/plugins.toml       ~/.cache/dein/toml_dir/plugins.toml
 ln -sf ~/dotfiles/toml_dir/plugins_lazy.toml  ~/.cache/dein/toml_dir/plugins_lazy.toml
+ln -sf ~/.cache/dein/toml_dir/plugins.toml        ~/.plugins.toml
+ln -sf ~/.cache/dein/toml_dir/plugins_lazy.toml   ~/.plugins_lazy.toml
 
 # zsh
-ln -sf ~/dotfiles/zprofile ~/.zprofile
-ln -sf ~/dotfiles/zshrc    ~/.zshrc
-ln -sf ~/dotfiles/zshenv   ~/.zshenv
+ln -sf ~/dotfiles/zprofile  ~/.zprofile
+ln -sf ~/dotfiles/zshrc     ~/.zshrc
+ln -sf ~/dotfiles/zshenv    ~/.zshenv
+ln -sf ~/dotfiles/zhistory  ~/.zhistory
 
 # git
 ln -sf ~/dotfiles/gitignore ~/.gitignore
@@ -30,3 +33,11 @@ ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 
 # tmux
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+
+# gtags
+ln -sf ~/dotfiles/globarc ~/.globalrc
+
+# flake8
+ln -sf ~/dotfiles/tox.ini ~/tox.ini
+
+
