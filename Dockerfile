@@ -18,18 +18,19 @@ RUN useradd morita && echo 'morita:hoge' | chpasswd
 RUN echo 'Defaults visiblepw' >> /etc/sudoers
 RUN echo 'morita ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-WORKDIR /home/morita
+#user change
 USER morita
+WORKDIR /home/morita
+ENV HOME /home/morita
 
 # pyenv virtualenv
-RUN git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-ENV HOME /home/morita
+RUN git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shim:$PYENV_ROOT/bin:$PATH
-RUN git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-RUN echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-RUN source ~/.bashrc
+RUN git clone https://github.com/yyuu/pyenv-virtualenv.git $HOME/.pyenv/plugins/pyenv-virtualenv
+RUN echo 'eval "$(pyenv init -)"' >> $HOME/.bashrc
+RUN echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
+RUN source $HOME/.bashrc
 RUN exec $SHELL -l
 RUN pyenv install 3.6.3
 RUN pyenv virtualenv 3.6.3 main
@@ -37,12 +38,7 @@ RUN pyenv global main
 RUN pyenv virtualenv 3.6.3 dev
 RUN pyenv rehash
 
-#ADD info.py /home/morita/info.py
-#
-#ENTRYPOINT ["python"]
-#CMD ["info.py"]
-
 # neovim
 RUN git clone https://github.com/tmorita-bsc/dotfiles.git
-RUN sudo chmod +x ~/dotfiles/init_env.sh
-RUN sudo sh ~/dotfiles/init_env.sh dein
+RUN sudo chmod +x $HOME/dotfiles/init_env.sh
+RUN sudo sh $HOME/dotfiles/init_env.sh dein
