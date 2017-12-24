@@ -3,3 +3,6 @@
   graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 [merge]
 	ff = false
+[user]
+  email = tatsuya.morita@bosco-tech.com
+  name = tmorita-bsc
