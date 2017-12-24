@@ -58,6 +58,7 @@ autoload -Uz compinit && compinit -u
 alias la="ls -a"
 
 alias vim="nvim"
+alias vimc="nvim -c Vaffle"
 
 alias gs="git status"
 alias ga="git add"

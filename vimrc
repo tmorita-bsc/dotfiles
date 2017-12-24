@@ -31,6 +31,9 @@ set shiftwidth=2
 set autoindent
 set smartindent
 
+" inccommand
+set inccommand=split
+
 " cursor
 set cursorline
 
@@ -44,6 +47,21 @@ autocmd QuickFixCmdPost *grep* cwindow
 " keymapping
 "" unmap
 nnoremap <Space> <Nop>
+
+"" change directory in current buffer
+command! -nargs=? -complete=dir -bang CD call s:ChangeCurrentDir('<args>', '<bang>')
+function! s:ChangeCurrentDir(directory, bang)
+  if a:directory == ''
+    lcd %:p:h
+  else
+    execute 'lcd' . a:directory
+  endif
+
+  if a:bang == ''
+    pwd
+  endif
+endfunction
+nnoremap <silent> <Space>cd :<C-u>CD<CR>
 
 "" neosnippet
 "imap     <C-m> <Plug>(neosnippet_expand_or_jump)
@@ -65,14 +83,29 @@ nnoremap <Space> <Nop>
 "" denite.nvim
 nnoremap [denite] <Nop>
 nmap     <Space>d [denite]
+" open file under buffer dir
+nnoremap <silent> [denite]o :<C-u>DeniteBufferDir file_rec<CR>
+" open file under open dir
+nnoremap <silent> [denite]c :<C-u>Denite file_rec<CR>
 " open recent use file buffer
 nnoremap <silent> [denite]h :<C-u>Denite file_mru<CR>
+" yank buffer
+nnoremap <silent> [denite]y :<C-u>Denite neoyank<CR>
+" find target under current cursor
+nnoremap <silent> [denite]* :<C-u>DeniteCursorWord grep<CR>
 " Denite grep
 nnoremap <silent> [denite]g :<C-u>Denite grep -buffer-name=search-buffer-denite<CR>
 " resume Denite grep
 nnoremap <silent> [denite]r :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
 nnoremap <silent> [denite]p :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
+
+
+" vaffle
+nnoremap [Vaffle] <Nop>
+nmap     <Space>o [Vaffle]
+nnoremap [Vaffle]n :Vaffle ./<CR> 
+nnoremap [Vaffle]h :Vaffle ~/<CR>
 
 "" nerdtree 
 nnoremap [nerdtree] <Nop>
@@ -92,56 +125,61 @@ nnoremap <C-g> :Gtags <C-r><C-w><CR>
 nnoremap <C-k> :Gtags -r <C-r><C-w><CR><CR>
 
 "" git-fugitive
-nnoremap :ga :Gwrite
-nnoremap :gr :Gread
-nnoremap :gs :Gstatus
-nnoremap :gl :Glog
-nnoremap :gb :Gblame
-nnoremap :gd :Gdiff
+nnoremap [fugitive] <Nop>
+nmap     <Space>g [fugitive]
+nnoremap <silent> [fugitive]t :te tig<CR>
+nnoremap <silent> [fugitive]a :Gwrite<CR>
+nnoremap <silent> [fugitive]r :Gread<CR>
+nnoremap <silent> [fugitive]s :Gstatus<CR>
+nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+nnoremap <silent> [fugitive]d :Gdiff<CR>
+nnoremap <silent> [fugitive]b :Gblame<CR>
+nnoremap <silent> [fugitive]m :Gmerge<CR>
+
 
 "" git-gutter
 let g:gitgutter_max_signs=500 "default value
 
 "" previm
-augroup PrevimSettings
-  autocmd!
-  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
-
-let g:previm_open_cmd = ''
-let g:previm_disable_default_css = 1
-let g:previm_custom_css_path = '~/dotfiles/previm/markdown.css'
-nnoremap [previm] <Nop>
-nmap     <Space>p [previm]
-nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
-nnoremap <silent> [previm]r :call previm#refresh()<CR>
+"augroup PrevimSettings
+"  autocmd!
+"  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+"augroup END
+"
+"let g:previm_open_cmd = ''
+"let g:previm_disable_default_css = 1
+"let g:previm_custom_css_path = '~/dotfiles/previm/markdown.css'
+"nnoremap [previm] <Nop>
+"nmap     <Space>p [previm]
+"nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
+"nnoremap <silent> [previm]r :call previm#refresh()<CR>
 
 " ALE
 "" keymapping
-nnoremap [ale] <Nop>
-nmap     <Space>a [ale]
-nnoremap <silent> [ale]<C-p> <Plug>{ale_previous}
-nnoremap <silent> [ale]<C-n> <Plug>{ale_next}
-"" message_format
-let g:airline#extensions#ale#enabled = 0
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%] '
-"" display error/warning sign always
-let g:ale_sign_column_always = 0
-"" execute lint with open file
-let g:ale_lint_on_enter = 0
-"" execute lint with save file
-let g:ale_lint_on_save = 0
-"" execute lint on editing file
-let g:ale_lint_on_text_changed = 0
-"" locationlist
-let g:ale_set_loclist   = 0
-"" quickfix
-let g:ale_set_quickfix  = 0
-let g:ale_open_list     = 0
-"" open if no error/warning
-let g:ale_keep_list_window_open = 0
+"nnoremap [ale] <Nop>
+"nmap     <Space>a [ale]
+"nnoremap <silent> [ale]<C-p> <Plug>{ale_previous}
+"nnoremap <silent> [ale]<C-n> <Plug>{ale_next}
+""" message_format
+"let g:airline#extensions#ale#enabled = 0
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%] '
+""" display error/warning sign always
+"let g:ale_sign_column_always = 0
+""" execute lint with open file
+"let g:ale_lint_on_enter = 0
+""" execute lint with save file
+"let g:ale_lint_on_save = 0
+""" execute lint on editing file
+"let g:ale_lint_on_text_changed = 0
+""" locationlist
+"let g:ale_set_loclist   = 0
+""" quickfix
+"let g:ale_set_quickfix  = 0
+"let g:ale_open_list     = 0
+""" open if no error/warning
+"let g:ale_keep_list_window_open = 0
 
 " env parameters
 "let g:python_host_prog = expand('python')
