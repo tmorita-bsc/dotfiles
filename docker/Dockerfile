@@ -23,7 +23,7 @@ USER morita
 WORKDIR /home/morita
 ENV HOME /home/morita
 
-# pyenv virtualenv
+# pyenv virtualenv:w
 RUN git clone https://github.com/yyuu/pyenv.git $HOME/.pyenv
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shim:$PYENV_ROOT/bin:$PATH
@@ -39,6 +39,12 @@ RUN pyenv virtualenv 3.6.3 dev
 RUN pyenv rehash
 
 # neovim
+RUN echo 'export XDG_CONFIG_HOME = "$HOME/.config"' >> $HOME/.bash_profile
+RUN echo 'export XDG_CACHE_HOME = "$HOME/.cache"' >> $HOME/.bash_profile
+RUN source $HOME/.bash_profile
 RUN git clone https://github.com/tmorita-bsc/dotfiles.git
 RUN sudo chmod +x $HOME/dotfiles/init_env.sh
 RUN sudo sh $HOME/dotfiles/init_env.sh dein
+RUN mkdir -p $HOME/.config
+RUN mkdir -p $HOME/.config/nvim
+RUN ln -sf ~/.vimrc ~/.config/nvim/init.vim
