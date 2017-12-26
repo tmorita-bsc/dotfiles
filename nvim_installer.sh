@@ -1,5 +1,5 @@
-cd ~/
-git clone https://github.com/tmorita-bsc/dotfiles.git
+#cd ~/
+#git clone https://github.com/tmorita-bsc/dotfiles.git
 
 yum update -y
 yum install -y epel-release
