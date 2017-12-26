@@ -1,5 +1,5 @@
-cd ~/
-git clone https://github.com/tmorita-bsc/dotfiles.git
+#cd ~/
+#git clone https://github.com/tmorita-bsc/dotfiles.git
 
 yum update -y
 yum install -y epel-release
@@ -22,4 +22,13 @@ pyenv virtualenv 3.6.3 main
 pyenv global 3.6.3
 
 cd init_env.sh
-sudo sh init_env.sh
+sudo sh init_env.sh dein
+
+cd /tmp
+wget http://tamacom.com/global/global-6.2.4.tar.gz
+tar xfvz global-6.2.4.tar.gz
+cd global-6.2.4
+sudo ./configure
+sudo make
+sudo make install
+ln -sf /usr/local/share/gtags/gtags.vim /usr/share/vim/vim74/plugin
