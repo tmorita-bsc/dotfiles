@@ -48,3 +48,17 @@ RUN sudo sh $HOME/dotfiles/init_env.sh dein
 RUN mkdir -p $HOME/.config
 RUN mkdir -p $HOME/.config/nvim
 RUN ln -sf $HOME/.vimrc $HOME/.config/nvim/init.vim
+
+WORKDIR /tmp
+RUN wget http://tamacom.com/global/global-6.2.4.tar.gz
+RUN tar xfvz global-6.2.4.tar.gz
+RUN cd global-6.2.4
+RUN sudo ./configure
+RUN sudo make
+RUN sudo make install
+RUN ln -sf /usr/local/share/gtags/gtags.vim /usr/share/vim/vim74/plugin
+
+RUN source $HOME/.bash_profile
+RUN mkdir -p $HOME/.config
+RUN mkdir -p $HOME/.config/nvim
+RUN ln -sf $HOME/.vimrc $HOME/.config/nvim/init.vim
