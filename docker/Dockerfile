@@ -47,4 +47,4 @@ RUN sudo chmod +x $HOME/dotfiles/init_env.sh
 RUN sudo sh $HOME/dotfiles/init_env.sh dein
 RUN mkdir -p $HOME/.config
 RUN mkdir -p $HOME/.config/nvim
-RUN ln -sf ~/.vimrc ~/.config/nvim/init.vim
+RUN ln -sf $HOME/.vimrc $HOME/.config/nvim/init.vim
