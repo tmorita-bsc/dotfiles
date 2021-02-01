@@ -220,35 +220,10 @@ function! s:denite_filter_my_settings() abort
   inoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
 endfunction
 
-"" denite-gtags
-"nnoremap  <C-a> :DeniteCursorWord -buffer-name=gtags_context gtags_context<CR>
-"nnoremap  <C-j> :DeniteCursorWord -buffer-name=gtags_def -mode=normal<CR>
-"nnoremap  <C-c> :DeniteCursorWord -buffer-name=gtags_ref -mode=normal<CR>
-"nnoremap  <C-g> :DeniteCursorWord -buffer-name=gtags_grep gtags_grep<CR>
-"nnoremap  <C-t> :Denite -buffer-name=gtags_completion gtags_completion<CR>
-"nnoremap  <C-f> :Denite -buffer-name=gtags_file gtags_file<CR>
-"nnoremap  <C-p> :Denite -buffer-name=gtags_path gtags_path<CR>
-
 "" nerdtree 
 nmap     <Leader>n [nerdtree]
 nnoremap <silent> [nerdtree]n :NERDTreeToggle<CR>
 nnoremap <silent> [nerdtree]f :NERDTreeFind<CR>
-
-"" gtags
-let g:Gtags_Auto_Map = 0
-let g:Gtags_OpenQuickfixWindow = 1
-"" go Definition
-map <F12> :GtagsCursor<CR>
-"""" list of function
-nnoremap <C-h> :Gtags -f %<CR><CR>
-"""" move Up/Down in QuickFixWindow
-nnoremap <C-n> :cn<CR>
-nnoremap <C-p> :cp<CR>
-"""" <C-g> func_name => function jump
-"""" <C-g> grep xxx ~> grep xxx in TAG
-nnoremap <C-g> :Gtags <C-r><C-w><CR>
-"""" <C-k> move caller function
-nnoremap <C-k> :Gtags -r <C-r><C-w><CR><CR>
 
 "" git-fugitive
 nmap     <Leader>g [fugitive]
@@ -275,10 +250,6 @@ augroup END
 "nmap     <Leader>pv [previm]
 "nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
 "nnoremap <silent> [previm]r :call previm#refresh()<CR>
-
-"" ALE
-nnoremap ]n <Plug>{ale_next}
-nnoremap ]N <Plug>{ale_previous}
 
 """ dein env parameters(dont edit)
 "let g:python_host_prog = expand('python')
