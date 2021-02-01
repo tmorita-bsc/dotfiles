@@ -160,23 +160,31 @@ cnoremap <C-p> <Up>
 "" denite.nvim
 nmap     <Leader>d [denite]
 " [l] Buffer で開いたファイルのpwd でのディレクトリのファイル一覧を表示
-nnoremap <silent> [denite]l :<C-u>DeniteBufferDir file buffer -split=floating file:new<CR>
+" nnoremap <silent> [denite]l :<C-u>DeniteBufferDir file buffer -split=floating file:new<CR>
+nnoremap <silent> [denite]l :<C-u>DeniteBufferDir file buffer<CR>
 " [f] Buffer で開いたファイルのpwd でのディレクトリ配下(/recursive)のファイル一覧を表示
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file/rec buffer -split=floating file:new<CR>
+" nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file/rec buffer -split=floating file:new<CR>
+nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file/rec buffer<CR>
 " [b] 現在の buffer 一覧を開く
-nnoremap <silent> [denite]b :<C-u>Denite buffer -split=floating file:new<CR>
+" nnoremap <silent> [denite]b :<C-u>Denite buffer -split=floating file:new<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 " [h] 最近利用したファイル一覧(history) buffer を開く
-nnoremap <silent> [denite]h :<C-u>Denite file_mru -split=floating file:new<CR>
+" nnoremap <silent> [denite]h :<C-u>Denite file_mru -split=floating file:new<CR>
+nnoremap <silent> [denite]h :<C-u>Denite file_mru<CR>
 " [y] yank buffer
-nnoremap <silent> [denite]y :<C-u>Denite neoyank -split=floating file:new<CR>
+" nnoremap <silent> [denite]y :<C-u>Denite neoyank -split=floating file:new<CR>
+nnoremap <silent> [denite]y :<C-u>Denite neoyank<CR>
 " [c] 変更箇所の一覧(change) buffer を開く
-nnoremap <silent> [denite]c :<C-u>Denite -mode=normal change jump -split=floating file:new<CR>
+" nnoremap <silent> [denite]c :<C-u>Denite -mode=normal change jump -split=floating file:new<CR>
+nnoremap <silent> [denite]c :<C-u>Denite -mode=normal change jump<CR>
 " [w] find target under current cursor
-nnoremap <silent> [denite]w :<C-u>DeniteCursorWord grep -split=floating file:new<CR>
+" nnoremap <silent> [denite]w :<C-u>DeniteCursorWord grep -split=floating file:new<CR>
+nnoremap <silent> [denite]w :<C-u>DeniteCursorWord grep<CR>
 " [g] Denite grep
 " Denite grep するたびに画面が変わってしまうと、前のgrep結果をもう一度見たりする場合に
 " 不便なため resume オプションでbuffer-nameを指定
-nnoremap <silent> [denite]g :<C-u>Denite grep -buffer-name=search-buffer-denite -split=floating file:new<CR>
+" nnoremap <silent> [denite]g :<C-u>Denite grep -buffer-name=search-buffer-denite -split=floating file:new<CR>
+nnoremap <silent> [denite]g :<C-u>Denite grep -buffer-name=search-buffer-denite<CR>
 " resume(履歴） Denite grep
 " [r] Denite grep 結果を開き直す
 nnoremap <silent> [denite]r :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
