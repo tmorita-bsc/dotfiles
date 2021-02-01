@@ -32,10 +32,10 @@ RUN echo 'eval "$(pyenv init -)"' >> $HOME/.bashrc
 RUN echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
 RUN source $HOME/.bashrc
 RUN exec $SHELL -l
-RUN pyenv install 3.6.3
-RUN pyenv virtualenv 3.6.3 main
+RUN pyenv install 3.9
+RUN pyenv virtualenv 3.9.1 main
 RUN pyenv global main
-RUN pyenv virtualenv 3.6.3 dev
+RUN pyenv virtualenv 3.9.1 dev
 RUN pyenv rehash
 
 # neovim
@@ -48,15 +48,6 @@ RUN sudo sh $HOME/dotfiles/init_env.sh dein
 RUN mkdir -p $HOME/.config
 RUN mkdir -p $HOME/.config/nvim
 RUN ln -sf $HOME/.vimrc $HOME/.config/nvim/init.vim
-
-WORKDIR /tmp
-RUN wget http://tamacom.com/global/global-6.2.4.tar.gz
-RUN tar xfvz global-6.2.4.tar.gz
-RUN cd global-6.2.4
-RUN sudo ./configure
-RUN sudo make
-RUN sudo make install
-RUN ln -sf /usr/local/share/gtags/gtags.vim /usr/share/vim/vim74/plugin
 
 RUN source $HOME/.bash_profile
 RUN mkdir -p $HOME/.config

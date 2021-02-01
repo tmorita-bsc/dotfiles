@@ -1,10 +1,16 @@
+# プラグインをコメントアウトしても削除はできない（読み込まないだけ）
+# 削除するためには
+# :call map(dein#check_clean(), "delete(v:val, 'rf')")
+# を実行する -> echo dein#check_clean() が利用していないプラグインリスト
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+# VimShell用
 [[plugins]]
 repo  = 'Shougo/vimproc.vim'
 build = 'make'
 
+# ステータスラインを強化
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
@@ -22,32 +28,62 @@ let g:lightline = {
 \}
 '''
 
+# vimチートシート
 [[plugins]]
-repo = 'cocopon/vaffle.vim'
-
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+repo = 'reireias/vim-cheatsheet'
+hook_add = '''
+  let g:cheatsheet#cheat_file = '~/.vim_cheat_sheet.md'
+  let g:cheatsheet#float_window = 1
+  let g:cheatsheet#float_window_width_ratio = 0.6
+  let g:cheatsheet#float_window_height_ratio = 0.6
+'''
 
 #[[plugins]]
-#repo = 'vim-syntastic/syntastic'
+#repo = 'Shougo/neosnippet.vim'
 
 #[[plugins]]
-#repo = 'w0rp/ale'
+#repo = 'Shougo/neosnippet-snippets'
 
 #[[plugins]]
-#repo = 'nathanaelkane/vim-indent-guides'
+#repo = 'thinca/vim-quickrun'
 
-[[plugins]]
-repo = 'thinca/vim-quickrun'
-
+# Gitの差分表示記号を行数字の左に表示
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  let g:gitgutter_max_signs=500 "default value
+'''
 
+# GitBlame用
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-#[[plugins]]
-#repo = 'vim-scripts/Conque-GDB'
+# インデント可視化
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  let g:indentLine_color_term = 239
+  let g:indentLine_color_gui = '#000000'
+'''
+
+# deniteと併用
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_path = '.*'
+
+# 文字の両端を囲む場合に簡単にする
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_path = '.*'
+on_i = 1
+
+# yankの上位互換
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_path = '.*'
+on_i = 1
+
+# deoplete.nvim(補間の基礎プラグイン）-> LSP(coc.nvim: .vimrc) へ移行
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# on_i = 1

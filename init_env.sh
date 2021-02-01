@@ -16,6 +16,7 @@ fi
 mkdir ~/.cache/dein/toml_dir
 ## need set python3 config .vimrc
 ln -sf ~/dotfiles/vimrc     ~/.vimrc
+ln -sf ~/dotfiles/vim_cheat_sheet ~/.vim_cheat_sheet.md
 ln -sf ~/dotfiles/toml_dir/plugins.toml       ~/.cache/dein/toml_dir/plugins.toml
 ln -sf ~/dotfiles/toml_dir/plugins_lazy.toml  ~/.cache/dein/toml_dir/plugins_lazy.toml
 ln -sf ~/.cache/dein/toml_dir/plugins.toml        ~/.plugins.toml
@@ -33,9 +34,6 @@ ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 
 # tmux
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
-
-# gtags
-ln -sf ~/dotfiles/globarc ~/.globalrc
 
 # flake8
 ln -sf ~/dotfiles/tox.ini ~/tox.ini

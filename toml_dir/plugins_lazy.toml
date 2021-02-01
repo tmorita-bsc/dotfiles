@@ -1,104 +1,20 @@
 # denite
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-on_source = ['denite'] 
-#on_event = 'BufRead'
-hook_post_source = '''
-#"C-N,C-Pで上下移動
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-#"C-J,C-Kでsplitで開く
-call denite#custom#map('insert', '<C-j>', '<denite:do_action:split>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:do_action:vsplit>', 'noremap')
-'''
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-on_path = '.*'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-on_path = '.*'
-on_i = 1
-
-# deoplete.nvim
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-on_i = 1
-
-# gtags
-[[plugins]]
-repo  = 'lighttiger2505/gtags.vim'
-
-[[plugins]]
-repo  = 'thinca/vim-qfreplace'
-on_source = ['gtags.vim'] 
-
-#[[plugins]]
-#repo = 'jsfaint/gen_tags.vim'
-#hook_add = '''
-#  let g:gen_tags#gtags_auto_gen = 1
-#'''
-#on_source = ['gtags.vim'] 
-
-[[plugins]]
-repo = 'ozelentok/denite-gtags'
+on_source = ['denite']
+# file_mru で シンボリックファイルを表示
 hook_add = '''
-  nmap <silent> [denite]<C-D> :Denite-buffer-name=gtags_completion gtags_completion<CR>
+  let g:neomru#follow_links = 1 
 '''
-on_source = ['gtags.vim'] 
 
-# nerdtree
+# defx(キーバインドや記号の自作が必要だが、軽い) vs nerdtree
+#[[plugins]]
+#repo = 'Shougo/defx.nvim'
+#on_cmd = ['defx']
 [[plugins]]
-repo = 'scrooloose/nerdtree'
+repo = 'preservim/nerdtree'
 on_cmd = ['nerdtree']
-
-# python
-[[plugins]]
-repo  = 'zchee/deoplete-jedi'
-on_ft = ['python']
-
-[[plugins]]
-repo  = 'hdima/python-syntax'
-on_ft = ['python']
-
-[[plugins]]
-repo  = 'hdima/python-syntax'
-on_ft = ['python']
-
-## markdown
-#[[plugins]]
-#repo = 'tyru/open-browser.vim'
-#on_ft = ['md', 'markdown']
-#
-#[[plugins]]
-#repo = 'kannokanno/previm'
-#on_ft = ['md', 'markdown']
-#
-#[[plugins]]
-#repo = 'plasticboy/vim-markdown'
-#on_ft = ['md', 'markdown']
-
-## html
-#[[plugins]]
-#repo = 'othree/html5.vim'
-#on_ft = ['html']
-#
-## css 
-#[[plugins]]
-#repo = 'hail2u/vim-css3-syntax'
-#on_ft = ['css']
-#
-## json 
-#[[plugins]]
-#repo = 'elzr/vim-json'
-#on_ft = ['json']
-#hook_add = '''
-#let g:vim_json_syntax_conceal = 0
-#'''
-#
-## toml
-#[[plugins]]
-#repo = 'cespare/vim-toml'
-#on_ft = ['toml']
+hook_add = '''
+  let g:NERDTreeShowHidden = 1
+'''
 
