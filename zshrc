@@ -76,7 +76,6 @@ bindkey "^S" history-incremental-search-forward
 alias la="ls -a"
 
 alias vim="nvim"
-alias vimc="nvim -c Vaffle"
 
 alias gs="git status"
 alias ga="git add"
@@ -94,6 +93,13 @@ alias tmkill="tmux kill-session -t"
 export PATH="/usr/local/opt/curl/bin:/usr/local/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+
+# terminal font color
+# https://geoff.greer.fm/lscolors/
+# Default (LSCOLORS: MAC(BSD), LS_COLORS: Linux)
+# LSCOLORS=exfxcxdxbxGxDxabagacad
+# LS_COLORS=di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:
+LSCOLORS=gxfxcxdxbxGxDxabagacad
 
 # Zstyle
 zstyle ':completion:*' completer _complete _match _approximate

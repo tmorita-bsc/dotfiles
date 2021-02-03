@@ -20,6 +20,7 @@ endif
 " :sp :vs でスプリット作成
 " <C-w>j, k, h, l で移動
 " <C-w>w で一つ隣に移動
+" <Space>w j,k,h,l もOK
 
 """ default parameter
 set history=10000
@@ -36,6 +37,8 @@ set showmatch
 set shellslash
 "" コマンドラインにて補間が見やすくなる
 set wildmenu
+"" VIM上でマウスを利用可能にする
+set mouse=a
 "" コマンドを表示する
 set showcmd
 "" Esc二回で検索ハイライトを消す
@@ -48,6 +51,13 @@ set ambiwidth=double
 source $VIMRUNTIME/macros/matchit.vim "can jump opposite {
 "" w!! でsudoを忘れても上書き保存
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
+
+""" アクティブウィンドウのみハイライト表示
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
 
 """ tab, indent parameter
 " 最近の仕様により、pythonやらRUSTやら言語によって
@@ -102,7 +112,7 @@ autocmd QuickFixCmdPost *grep* cwindow
 " <BS>	バックスペース
 " <Tab>	タブ
 " <Enter>	エンター
-" <Plug> コマンド用の実行文字　デフォルトは「:(コロン)」
+" <Plug> コマンド用の実行文字　デフォルトは「:(コロン)」-> <Plug>はnnoremap　と使えないため、nmapを利用すること
 " <CR>	キャリッジリターン。エンター押下時の改行と同じ
 " <Esc>	エスケープ
 " <Space>	スペース
@@ -124,12 +134,13 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 "" mapleader
 let mapleader = "\<Space>"
-"" Leaderを使った例
-" nmap <Leader>w [window]
-" nnoremap [window]h <C-w>h
-" nnoremap [window]j <C-w>j
-" nnoremap [window]k <C-w>k
-" nnoremap [window]l <C-w>l
+
+"" <C-w> も使えるが、vimでのsplit移動
+nmap <Leader>w [window]
+nnoremap [window]h <C-w>h
+nnoremap [window]j <C-w>j
+nnoremap [window]k <C-w>k
+nnoremap [window]l <C-w>l
 
 "" コマンドラインモードでLinuxと同じようにカーソルを動かす
 cnoremap <C-a> <Home>
@@ -157,14 +168,50 @@ cnoremap <C-p> <Up>
 "  set conceallevel=2 concealcursor=niv
 "endif
 
+"" Coc.nvim
+"" <Plug> can not use with nnoremap
+"" [Coc-command_list] https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
+nmap     <Leader>c [coc]
+" 定義元へジャンプ
+nmap <silent> <F12> <Plug>(coc-definition)
+nmap <silent> [coc]d <Plug>(coc-definition)
+nmap <silent> [coc]j  :<C-u>call CocActionAsync('jumpDefinition')<CR>
+" 定義元(変数)へジャンプ
+nmap <silent> [coc]t <Plug>(coc-declaration)
+" 参照先へジャンプ
+nmap <silent> <F11> <Plug>(coc-references)
+nmap <silent> [coc]r <Plug>(coc-references)
+" フォーマット(CocConfigにて、AutoFormattingの設定あり)
+" nmap <silent> <F10> <Plug>(coc-format)
+nnoremap <silent> <F10> :<C-u>call CocAction('format')<CR>
+nnoremap <silent> [coc]f :<C-u>call CocAction('format')<CR>
+" Hover（関数の使い方などの説明） 
+nnoremap <silent> [coc]h :<C-u>call CocActionAsync('doHover')<CR>
+" エラージャンプ
+" jump error and warning
+" nmap <silent> [coc]n <Plug>(coc-diagnostic-next)
+" jump error
+" nmap <silent> [coc]n <Plug>(coc-diagnostic-next-error)
+nnoremap <silent> [coc]n :call CocAction('diagnosticNext')<CR>
+" nmap <silent> [coc]N <Plug>(coc-diagnostic-prev)
+" nmap <silent> [coc]N <Plug>(coc-diagnostic-prev-error)
+nnoremap <silent> [coc]N :call CocAction('diagnosticPrevious')<CR>
+" Show all diagnostics.
+" nnoremap <silent> [coc]a  :<C-u>CocList diagnostics<CR>
+nnoremap <silent> [coc]a  :<C-u>CocDiagnostics<CR>
+
 "" denite.nvim
 nmap     <Leader>d [denite]
 " [l] Buffer で開いたファイルのpwd でのディレクトリのファイル一覧を表示
 " nnoremap <silent> [denite]l :<C-u>DeniteBufferDir file buffer -split=floating file:new<CR>
+" nnoremap <silent> [denite]l :<C-u>DeniteBufferDir file buffer -start-filter<CR>
 nnoremap <silent> [denite]l :<C-u>DeniteBufferDir file buffer<CR>
 " [f] Buffer で開いたファイルのpwd でのディレクトリ配下(/recursive)のファイル一覧を表示
 " nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file/rec buffer -split=floating file:new<CR>
 nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file/rec buffer<CR>
+" [a] neovim を開いた pwd でのディレクトリ配下(/recursive)のファイル一覧を表示
+" nnoremap <silent> [denite]a :<C-u>Denite file/rec buffer -split=floating file:new<CR>
+nnoremap <silent> [denite]a :<C-u>Denite file/rec buffer<CR>
 " [b] 現在の buffer 一覧を開く
 " nnoremap <silent> [denite]b :<C-u>Denite buffer -split=floating file:new<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
@@ -234,20 +281,20 @@ nnoremap <silent> [nerdtree]n :NERDTreeToggle<CR>
 nnoremap <silent> [nerdtree]f :NERDTreeFind<CR>
 
 "" git-fugitive
-nmap     <Leader>g [fugitive]
-nnoremap <silent> [fugitive]t :te tig<CR>
-nnoremap <silent> [fugitive]a :Gwrite<CR>
-nnoremap <silent> [fugitive]r :Gread<CR>
-nnoremap <silent> [fugitive]s :Gstatus<CR>
-nnoremap <silent> [fugitive]c :Gcommit-v<CR>
-nnoremap <silent> [fugitive]d :Gdiff<CR>
-nnoremap <silent> [fugitive]b :Gblame<CR>
-nnoremap <silent> [fugitive]m :Gmerge<CR>
+nmap     <Leader>g [git]
+nnoremap <silent> [git]t :te tig<CR>
+nnoremap <silent> [git]a :Gwrite<CR>
+nnoremap <silent> [git]r :Gread<CR>
+nnoremap <silent> [git]s :Gstatus<CR>
+nnoremap <silent> [git]c :Gcommit-v<CR>
+nnoremap <silent> [git]d :Gdiff<CR>
+nnoremap <silent> [git]b :Gblame<CR>
+nnoremap <silent> [git]m :Gmerge<CR>
 
 "" git-gutter
 " hunk移動(hunk：変更点の塊）
-nnoremap [n <Plug>GitGutterNextHunk
-nnoremap [N <Plug>GitGutterPrevHunk
+nmap [n <Plug>GitGutterNextHunk
+nmap [N <Plug>GitGutterPrevHunk
 
 "" previm
 augroup PrevimSettings

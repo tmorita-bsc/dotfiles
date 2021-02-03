@@ -30,6 +30,23 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 ```
 
+## coc.nvim
+
+```vim
+nmap     <Leader>c [coc]
+" [F12/c] 定義元へジャンプ
+nnoremap <silent> <F12> <Plug>(coc-definition)
+nnoremap <silent> [coc]d <Plug>(coc-definition)
+" [F11/r] 参照先へジャンプ
+nnoremap <silent> <F11> <Plug>(coc-references)
+nnoremap <silent> [coc]r <Plug>(coc-references)
+" [F10/f] フォーマット
+nnoremap <silent> <F10> <Plug>(coc-format)
+nnoremap <silent> [coc]f <Plug>(coc-format)
+" [h] Hover（関数の使い方などの説明） 
+nnoremap <silent> [coc]h :<C-u>call CocAction('doHover')<CR>
+```
+
 ## denite.nvim
 
 ```vim

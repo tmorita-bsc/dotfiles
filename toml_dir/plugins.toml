@@ -15,15 +15,15 @@ build = 'make'
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
-\  'colorscheme':'wombat',
+\  'colorscheme':'powerline',
 \  'active': {
 \    'left': [
 \      ['mode', 'paste'],
-\      ['readonly', 'filename', 'modified', 'ale'],
+\      ['readonly', 'filename', 'modified', 'coc'],
 \    ]
 \  },
 \  'component_function': {
-\    'ale':'ALEGetStatusLine'
+\    'coc':'coc#status'
 \  }
 \}
 '''
@@ -66,6 +66,11 @@ hook_add = '''
   let g:indentLine_color_gui = '#000000'
 '''
 
+# 検索強化(ag: silver searcher)
+[[plugins]]
+# repo = 'rking/ag.vim'
+repo = 'BurntSushi/ripgrep'
+
 # deniteと併用
 [[plugins]]
 repo = 'Shougo/neomru.vim'
@@ -84,6 +89,5 @@ on_path = '.*'
 on_i = 1
 
 # deoplete.nvim(補間の基礎プラグイン）-> LSP(coc.nvim: .vimrc) へ移行
-# [[plugins]]
-# repo = 'Shougo/deoplete.nvim'
-# on_i = 1
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'

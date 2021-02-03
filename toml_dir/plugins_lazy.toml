@@ -6,6 +6,18 @@ on_source = ['denite']
 hook_add = '''
   let g:neomru#follow_links = 1 
 '''
+# rg は .gitignore を参考に検索しない箇所を作るため高速
+hook_source = '''
+  call denite#custom#var('file/rec', 'command',
+  \ ['rg', '--files', '--glob', '!.git'])
+  call denite#custom#var('grep', 'command', ['rg'])
+  call denite#custom#var('grep', 'default_opts',
+      \ ['-i', '--vimgrep', '--no-heading'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
+'''
 
 # defx(キーバインドや記号の自作が必要だが、軽い) vs nerdtree
 #[[plugins]]
